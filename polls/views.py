@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView, ListView
+from polls.models import *
 
-# Create your views here.
+
+class TestListView(ListView):
+    template_name = 'test_list.html'
+    model = Test

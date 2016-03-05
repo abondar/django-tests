@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from polls.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^test/list/', TestListView.as_view())
 ]
