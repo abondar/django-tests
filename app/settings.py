@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'registration',
     'widget_tweaks',
     'debug_toolbar',
+    'nested_inline',
 ]
 
 MIDDLEWARE_CLASSES = [

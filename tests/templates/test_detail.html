@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="h2 text-center">
+        {{ object.name }}
+    </div>
+
+    <form action="/test/start/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="test_id" value="{{ object.id }}">
+        <div class="text-center margin_top">
+            <input type="submit" class="btn-success btn" value="Начать тест">
+        </div>
+    </form>
+
+
+{% endblock %}

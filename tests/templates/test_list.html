@@ -4,7 +4,7 @@
     <h2>Тесты</h2>
     <div class="list-group">
         {% for test in object_list %}
-            <a class="list-group-item" href={{ test.id }}>{{ test.name }}</a>
+            <a class="list-group-item" href="detail/{{ test.id }}">{{ test.name }}</a>
         {% endfor %}
     </div>
 {% endblock %}
