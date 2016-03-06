@@ -2,9 +2,9 @@
 
 {% block content %}
     <h2>Тесты</h2>
-    <ul>
+    <div class="list-group">
         {% for test in object_list %}
-            <li>{{ test.name }}</li>
+            <a class="list-group-item" href={{ test.id }}>{{ test.name }}</a>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
