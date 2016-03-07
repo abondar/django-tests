@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for test in test_list reversed %}
+        <div class="result_block">
+            <div>
+                <h2>{{ test.test.name }}</h2>
+                <p><strong>Вопросов: </strong>{{ test.questions_number }}</p>
+                <p><strong>Правильных ответов: </strong>{{ test.right_answers }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
+{% block right_block %}
+
+    <div class="info_block text-center">
+        <h4>{{ user.username }}</h4>
+        <br>
+        <a class="btn btn-success" href="/accounts/logout/">Выйти</a>
+    </div>
+
+{% endblock %}

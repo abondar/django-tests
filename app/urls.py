@@ -17,10 +17,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import RedirectView
+from tests.views import ProfileView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', RedirectView.as_view(url='/test/')),
     url(r'^accounts/profile/', RedirectView.as_view(url='/test/')),
+    url(r'^profile/', ProfileView.as_view()),
     url(r'^accounts/register/complete/', RedirectView.as_view(url='/test/')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^test/', include('tests.urls')),

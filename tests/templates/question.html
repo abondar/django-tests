@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{ test.current_question }}"
+             aria-valuemin="0" aria-valuemax="{{ test.questions_number }}" style="width:{{ progress }}%">
+            <span class="sr-only">{{ progress }}%</span>
+        </div>
+    </div>
+
+    <div class="margin_block">
+        <h4>{{ question.text }}</h4>
+        <br>
+        <form action="/test/running/{{ test.id }}/" method="post">
+            {% csrf_token %}
+            {% for answer in question.answer_set.all %}
+                <div class="checkbox">
+                    <label class="" for="answer{{ forloop.counter }}"><input type="checkbox" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+                    {{ answer.text }}</label>
+                </div>
+            {% endfor %}
+            <div class="margin_top">
+                <input type="submit" class="btn btn-primary" value="Ответить">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+
+{% block right_block %}
+
+    <div class="info_block">
+        <h4 class="text-center">{{ test.test.name }}</h4>
+        <p>Всего вопросов: {{ test.questions_number }}</p>
+    </div>
+
+{% endblock %}

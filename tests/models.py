@@ -12,20 +12,20 @@ class Test(models.Model):
 
 
 class Question(models.Model):
-    text = models.CharField(max_length=250, null=True, blank=False)
+    text = models.CharField(max_length=250, blank=True)
     test = models.ForeignKey(Test)
 
     def __str__(self):
-        return "Question %s for test %s" % (self.text, self.test.name)
+        return "Question \'%s\' for test \'%s\'" % (self.text, self.test.name)
 
 
 class Answer(models.Model):
-    text = models.CharField(max_length=150, null=True, blank=False)
+    text = models.CharField(max_length=150, blank=True)
     is_right = models.BooleanField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s for %s" % (self.text, self.question.text)
+        return "%s for \'%s\'" % (self.text, self.question.text)
 
 
 class StartedTest(models.Model):
@@ -37,4 +37,4 @@ class StartedTest(models.Model):
     is_finished = models.BooleanField(default=False)
 
     def __str__(self):
-        return "%s for user %s" % self.test.name, self.user.username
+        return "\'%s\' for user \'%s\'" % (self.test.name, self.user.username)
