@@ -6,7 +6,7 @@
     <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="{{ test.current_question }}"
              aria-valuemin="0" aria-valuemax="{{ test.questions_number }}" style="width:{{ progress }}%">
-            <span class="sr-only">{{ progress }}%</span>
+            {{ progress }}%
         </div>
     </div>
 
@@ -17,24 +17,36 @@
             {% csrf_token %}
             {% for answer in question.answer_set.all %}
                 <div class="checkbox">
-                    <label class="" for="answer{{ forloop.counter }}"><input type="checkbox" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+                    <label class="" for="answer{{ forloop.counter }}">
+                        <input type="checkbox" name="answer" onchange="document.getElementById('submit_answer').disabled = !this.checked;"
+                               id="answer{{ forloop.counter }}" value="{{ answer.id }}">
                     {{ answer.text }}</label>
                 </div>
             {% endfor %}
-            <div class="margin_top">
-                <input type="submit" class="btn btn-primary" value="Ответить">
+            <div style="margin-top: 50px">
+                <input type="submit" id="submit_answer" class="btn btn-primary" value="Ответить" disabled>
             </div>
         </form>
     </div>
+
+    <script type="text/javascript">
+        var checkboxes = $("input[type='checkbox']"),
+        submitButt = $("input[type='submit']");
+
+        checkboxes.click(function() {
+            submitButt.attr("disabled", !checkboxes.is(":checked"));
+        });
+    </script>
 
 {% endblock %}
 
 
 {% block right_block %}
 
-    <div class="info_block">
-        <h4 class="text-center">{{ test.test.name }}</h4>
-        <p>Всего вопросов: {{ test.questions_number }}</p>
+    <div class="info_block text-center">
+        <h4>{{ test.test.name }}</h4>
+        <p>Вопросов: {{ test.current_question }}/{{ test.questions_number }}</p>
+
     </div>
 
 {% endblock %}

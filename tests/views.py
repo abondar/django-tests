@@ -57,7 +57,7 @@ class QuestionView(View, LoginRequiredMixin):
     def render_current_question(self, request, test):
         if test.current_question < test.questions_number:
             question = Question.objects.filter(test=test.test)[test.current_question]
-            progress = (test.current_question / test.questions_number) * 100
+            progress = int((test.current_question / test.questions_number) * 100)
             return render(request, 'question.html', {'question': question, 'test': test, 'progress': progress})
         else:
             test.is_finished = True
