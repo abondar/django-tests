@@ -1,0 +1,19 @@
+appnope==0.1.0
+decorator==4.0.9
+Django==1.9.4
+django-crispy-forms==1.6.0
+django-debug-toolbar==1.4
+-e git://github.com/Egregors/django-nested-inline.git@f0f6bc5943ff305c9000655785356643ebe3fe80#egg=django_nested_inline-master
+django-registration-redux==1.4
+django-widget-tweaks==1.4.1
+gnureadline==6.3.3
+ipython==4.1.2
+ipython-genutils==0.1.0
+path.py==8.1.2
+pexpect==4.0.1
+pickleshare==0.6
+ptyprocess==0.5.1
+simplegeneric==0.8.1
+six==1.10.0
+sqlparse==0.1.18
+traitlets==4.1.0
