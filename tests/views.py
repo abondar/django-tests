@@ -78,5 +78,5 @@ class ResultView(View, LoginRequiredMixin):
 
 class ProfileView(View, LoginRequiredMixin):
     def get(self, request):
-        test_list = StartedTest.objects.filter(user=request.user)
+        test_list = StartedTest.objects.filter(user=request.user, is_finished=True)
         return render(request, "profile.html", {'user': request.user, 'test_list': test_list})

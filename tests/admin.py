@@ -17,15 +17,27 @@ class AnswerInlineFormSet(BaseInlineFormSet):
                         right_count += 1
             except AttributeError:
                 pass
-
         if count == 0:
             return
-        elif count == 1:
+        if count == 1:
             raise ValidationError('Вопрос должен иметь по крайней мере два ответа')
         elif right_count == count:
             raise ValidationError('Все ответы на вопрос не могут быть правльными')
         elif right_count == 0:
             raise ValidationError('Должен быть хотя бы один правильный ответ')
+
+
+class QuestionInlineFormSet(BaseInlineFormSet):
+    def clean(self):
+        count = 0
+        for form in self.forms:
+            try:
+                if form.cleaned_data:
+                    count += 1
+            except AttributeError:
+                pass
+        if count < 1:
+            raise ValidationError('Должен быть по крайней мере один вопрос')
 
 
 class AnswerInline(NestedStackedInline):
