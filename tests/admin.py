@@ -9,7 +9,6 @@ class AnswerInlineFormSet(BaseInlineFormSet):
         count = 0
         right_count = 0
         for form in self.forms:
-            print(form)
             try:
                 if form.cleaned_data:
                     count += 1
@@ -47,6 +46,7 @@ class AnswerInline(NestedStackedInline):
 
 class QuestionInline(NestedStackedInline):
     model = Question
+    formset = QuestionInlineFormSet
     inlines = [AnswerInline]
 
 
