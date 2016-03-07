@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="list-group">
-        {% for test in object_list %}
+        {% for test in object_list reversed %}
             <a class="list-group-item" href="detail/{{ test.id }}">{{ test.name }}</a>
         {% endfor %}
     </div>

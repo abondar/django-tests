@@ -2,8 +2,9 @@
 
 {% block content %}
 
-    <div class="h2 text-center">
-        {{ object.name }}
+    <div class="text-center">
+        <h2>{{ object.name }}</h2>
+        <p>{{ object.description }}</p>
     </div>
 
     <form action="/test/start/" method="post">
