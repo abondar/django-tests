@@ -5,8 +5,8 @@ from tests.models import *
 
 
 class TestListView(ListView, LoginRequiredMixin):
-    template_name = 'test_list.html'
     model = Test
+    template_name = 'test_list.html'
 
 
 class TestDetailView(DetailView, LoginRequiredMixin):

@@ -2,19 +2,20 @@
 
 {% block content %}
 
-
-    <div class="c100 p{{ percent }} big green">
-        <span>{{ percent }}%</span>
-        <div class="slice">
-            <div class="bar"></div>
-            <div class="fill"></div>
-        </div>
-    </div>
-
     <div>
-        <h2>{{ test.test.name }}</h2>
-        <p><strong>Вопросов: </strong>{{ test.questions_number }}</p>
-        <p><strong>Правильных ответов: </strong>{{ test.right_answers }}</p>
+        <div class="c100 p{{ percent }} big green">
+            <span>{{ percent }}%</span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>
+
+        <div>
+            <h2>{{ test.test.name }}</h2>
+            <p><strong>Вопросов: </strong>{{ test.questions_number }}</p>
+            <p><strong>Правильных ответов: </strong>{{ test.right_answers }}</p>
+        </div>
     </div>
 
 {% endblock %}
