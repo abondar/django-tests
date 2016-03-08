@@ -4,17 +4,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from tests.models import *
 
 
-class TestListView(ListView, LoginRequiredMixin):
+class TestListView(LoginRequiredMixin, ListView):
     model = Test
     template_name = 'test_list.html'
 
 
-class TestDetailView(DetailView, LoginRequiredMixin):
+class TestDetailView(LoginRequiredMixin, DetailView):
     model = Test
     template_name = 'test_detail.html'
 
 
-class StartTestView(View, LoginRequiredMixin):
+class StartTestView(LoginRequiredMixin, View):
     def post(self, request):
         test_id = request.POST['test_id']
         user = request.user
@@ -26,7 +26,7 @@ class StartTestView(View, LoginRequiredMixin):
         return redirect('/test/running/' + str(started_test.id))
 
 
-class QuestionView(View, LoginRequiredMixin):
+class QuestionView(LoginRequiredMixin, View):
     def get(self, request, test_id, **kwargs):
         test = StartedTest.objects.get(id=test_id, user=request.user)
 
@@ -65,7 +65,7 @@ class QuestionView(View, LoginRequiredMixin):
             return redirect('/test/result/' + str(test.id))
 
 
-class ResultView(View, LoginRequiredMixin):
+class ResultView(LoginRequiredMixin, View):
     def get(self, request, test_id):
         test = StartedTest.objects.get(id=test_id, user=request.user)
 
@@ -76,7 +76,7 @@ class ResultView(View, LoginRequiredMixin):
         return render(request, "result.html", {'test': test, 'percent': percent})
 
 
-class ProfileView(View, LoginRequiredMixin):
+class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
         test_list = StartedTest.objects.filter(user=request.user, is_finished=True)
         return render(request, "profile.html", {'user': request.user, 'test_list': test_list})
